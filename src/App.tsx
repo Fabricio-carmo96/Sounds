@@ -1,11 +1,11 @@
-import Controls from "./Components/Controls"
+import YTVideo from "./Components/YTVideo"
 
 
 
 function App() {
   return (
 
-      <Controls/>
+      <YTVideo/>
   )
 }
 
