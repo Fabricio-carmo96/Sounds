@@ -1,3 +1,4 @@
+import { SoundBoard } from "./Components/SoundBoard"
 import YTVideo from "./Components/YTVideo"
 
 
@@ -5,7 +6,10 @@ import YTVideo from "./Components/YTVideo"
 function App() {
   return (
 
-      <YTVideo/>
+    <>
+    <YTVideo/>
+    <SoundBoard/>
+    </>
   )
 }
 

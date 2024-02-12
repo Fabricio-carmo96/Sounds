@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Slider from '@mui/material/Slider';
+import VolumeDown from '@mui/icons-material/VolumeDown';
+import VolumeUp from '@mui/icons-material/VolumeUp';
+
 
 function getVideoIdFromUrl(url: string): string | void {
   if (!url) {
@@ -17,6 +23,8 @@ function getVideoIdFromUrl(url: string): string | void {
 const YTVideo: React.FC = () => {
   const [player, setPlayer] = useState(null);
   const [url, setUrl] = useState("");
+  const [volume, setVolume] = React.useState<number>(30);
+
   useEffect(() => {
     // 1. Load the IFrame Player API code asynchronously.
     const tag = document.createElement("script");
@@ -58,6 +66,12 @@ const YTVideo: React.FC = () => {
       player.pauseVideo();
     }
   };
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    setVolume(newValue as number);
+    player.setVolume(newValue as number)
+  };
+
+  
 
   return (
     <>
@@ -71,6 +85,13 @@ const YTVideo: React.FC = () => {
         Trocar video
       </button>
       <button onClick={handleClick}>Play/Pause</button>
+      <Box sx={{ width: 200 }}>
+      <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+        <VolumeDown />
+        <Slider aria-label="Volume" value={volume} onChange={handleChange} />
+        <VolumeUp />
+      </Stack>
+    </Box>
     </>
   );
 };
